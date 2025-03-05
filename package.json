@@ -1,0 +1,15 @@
+{
+  "name": "ar-navigation",
+  "version": "1.0.0",
+  "description": "AR Indoor Navigation System",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "mkdir -p public && cp -r app.js styles.css public/ && echo 'Build completed'"
+
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "http-proxy-middleware": "^2.0.6"
+  }
+}

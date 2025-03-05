@@ -1,0 +1,220 @@
+/* Basic mobile-first design */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f5f5f5;
+    overflow: hidden;
+}
+
+.mobile-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+}
+
+.search-container {
+    flex: 1;
+    display: flex;
+    gap: 10px;
+    padding: 5px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#search-bar {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#search-btn {
+    padding: 12px 24px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#search-btn:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background: #218838;
+}
+
+/* Location List Styles */
+#location-list-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#location-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#location-list li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#location-list li:hover {
+    background: #f8f9fa;
+}
+
+#location-list li:last-child {
+    border-bottom: none;
+}
+
+/* Keep existing styles for AR container, controls, and navigation info */
+#ar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+
+.controls {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+    z-index: 1000;
+}
+
+#start-btn, #stop-btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+#start-btn {
+    background: #28a745;
+    color: white;
+}
+
+#stop-btn {
+    background: #dc3545;
+    color: white;
+}
+
+#start-btn:hover, #stop-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+#start-btn:active, #stop-btn:active {
+    transform: translateY(1px);
+}
+
+/* Navigation Info Panel */
+.nav-info {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    display: none;
+}
+
+.nav-info.active {
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .search-container {
+        padding: 5px 10px;
+    }
+
+    #search-bar {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    #search-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .nav-info {
+        padding: 10px 20px;
+    }
+}
