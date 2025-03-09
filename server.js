@@ -3,7 +3,9 @@ const path = require('path');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
-const backendUrl = process.env.BACKEND_URL || 'http://localhost:8080';
+const backendUrl = process.env.BACKEND_URL || 'http://localhost:8080'; // Set to localhost for local development
+
+
 const PORT = process.env.PORT || 8080;
 
 
