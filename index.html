@@ -77,7 +77,9 @@
                     <option value="cafe">Café</option>
                 </select>
             </div>
-            <div class="navigation-controls">
+        <div class="navigation-controls">
+            <button id="scan-qr-btn">Scan QR Code</button>
+
                 <button id="start-btn">Start Navigation</button>
                 <button id="stop-btn">Stop Navigation</button>
             </div>
@@ -109,15 +111,17 @@
                 },
                 (errorMessage) => {
                     // Handle scanning errors
-                    console.error(errorMessage);
+                    console.error("Scanning error:", errorMessage);
+
                 }
             ).catch(err => {
                 console.error("Unable to start scanning:", err);
             });
         }
 
-        // Call startScanning when ready
+        // Call startScanning when the QR code scanner is ready
         startScanning();
+
 
         // Fetch coordinates from the backend
         fetch('http://localhost:8080/api/coordinates')
