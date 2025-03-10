@@ -105,9 +105,17 @@
                     qrbox: 250
                 },
                 (decodedText, decodedResult) => {
+                    console.log("QR code scanned:", decodedText);
                     const coordinates = JSON.parse(decodedText);
                     // Start navigation using the coordinates
                     startNavigation(coordinates);
+                    // Create and display a 3D arrow at the scanned coordinates
+                    const arrow = document.createElement('a-entity');
+                    arrow.setAttribute('geometry', 'primitive: arrow; height: 1; radiusBottom: 0.1; radiusTop: 0');
+                    arrow.setAttribute('material', 'color: red');
+                    arrow.setAttribute('position', `${coordinates.x} ${coordinates.z} ${coordinates.y}`);
+                    document.querySelector('a-scene').appendChild(arrow);
+
                 },
                 (errorMessage) => {
                     // Handle scanning errors
