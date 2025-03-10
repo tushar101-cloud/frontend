@@ -71,13 +71,11 @@
         <div class="controls">
             <div class="search-container">
                 <select id="location-dropdown">
-                    <option value="">Select a location...</option>
+                    <option value="">Select a location</option>
                     <option value="seminarHall">Seminar Hall</option>
                     <option value="library">Library</option>
                     <option value="cafe">Café</option>
                 </select>
-               
-
             </div>
             <div class="navigation-controls">
                 <button id="start-btn">Start Navigation</button>
@@ -94,12 +92,46 @@
 
     <!-- Custom Components -->
     <script>
-        // Hardcoded coordinates for locations
-        const coordinates = {
-            seminarHall: { start: { x: 1, y: 0, z: 1 }, end: { x: 2, y: 0, z: 2 } },
-            library: { start: { x: 3, y: 0, z: 3 }, end: { x: 4, y: 0, z: 4 } },
-            cafe: { start: { x: 5, y: 0, z: 5 }, end: { x: 6, y: 0, z: 6 } }
-        };
+        // QR Code Scanning Functionality
+        const html5QrCode = new Html5Qrcode("reader");
+
+        function startScanning() {
+            html5QrCode.start(
+                { facingMode: "environment" },
+                {
+                    fps: 10,
+                    qrbox: 250
+                },
+                (decodedText, decodedResult) => {
+                    const coordinates = JSON.parse(decodedText);
+                    // Start navigation using the coordinates
+                    startNavigation(coordinates);
+                },
+                (errorMessage) => {
+                    // Handle scanning errors
+                    console.error(errorMessage);
+                }
+            ).catch(err => {
+                console.error("Unable to start scanning:", err);
+            });
+        }
+
+        // Call startScanning when ready
+        startScanning();
+
+        // Fetch coordinates from the backend
+        fetch('http://localhost:8080/api/coordinates')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(coord => {
+                    const arrow = document.createElement('a-entity');
+                    arrow.setAttribute('geometry', 'primitive: arrow; height: 1; radiusBottom: 0.1; radiusTop: 0');
+                    arrow.setAttribute('material', 'color: red');
+                    arrow.setAttribute('position', `${coord.x} ${coord.z} ${coord.y}`);
+                    document.querySelector('a-scene').appendChild(arrow);
+                });
+            })
+            .catch(error => console.error('Error fetching coordinates:', error));
 
         // Handle location selection
         document.getElementById('location-dropdown').addEventListener('change', function() {
