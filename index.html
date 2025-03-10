@@ -50,8 +50,6 @@
                     </a-box>
                 </a-marker>
 
-
-               
                 <!-- Navigation Helper Elements -->
                 <a-entity id="navigation-helpers">
                     <!-- Distance markers will be added dynamically -->
@@ -97,15 +95,13 @@
                     qrbox: 250
                 },
                 (decodedText, decodedResult) => {
-                console.log("QR code scanned:", decodedText);
-                alert("QR code scanning successful!");
-
+                    console.log("QR code scanned:", decodedText);
                     alert("QR code scanning successful!");
 
                     try {
                         const coordinates = JSON.parse(decodedText);
-                        // Start navigation using the coordinates
-                handleScannedCoordinates(coordinates); // Call the function to handle scanned coordinates
+                        console.log("Parsed coordinates:", coordinates); // Log the parsed coordinates
+                        handleScannedCoordinates(coordinates); // Call the function to handle scanned coordinates
 
                         // Create and display a 3D arrow at the scanned coordinates
                         const arrow = document.createElement('a-entity');
@@ -121,23 +117,20 @@
                     // Handle scanning errors
                     console.error("Scanning error:", errorMessage);
                     alert("QR code scanning failed. Please try again.");
-
                 }
             ).catch(err => {
                 console.error("Unable to start scanning:", err);
             });
         }
 
-
         // Set up event listener for the scan QR button
         document.getElementById('scan-qr-btn').addEventListener('click', startScanning);
-
-
 
         // Fetch coordinates from the backend
         fetch('http://localhost:8080/api/coordinates')
             .then(response => response.json())
             .then(data => {
+                console.log("Fetched coordinates:", data); // Log the fetched coordinates
                 data.forEach(coord => {
                     const arrow = document.createElement('a-entity');
                     arrow.setAttribute('geometry', 'primitive: arrow; height: 1; radiusBottom: 0.1; radiusTop: 0');

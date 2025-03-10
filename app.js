@@ -37,7 +37,15 @@ const ARROW_MODEL = {
 };
 
 async function loadModelAndPath() {
-    let coordinates = [];
+    let coordinates = [
+        createCoordinate(606937.50, 2956334.49, 94.0, "Seminar Hall Entrance", "Entrance to the seminar hall", "ENTRANCE"),
+        createCoordinate(606943.03, 2956338.86, 0.0, "Seminar Hall Waypoint 1", "First waypoint near seminar hall", "WAYPOINT"),
+        createCoordinate(606945.92, 2956338.55, 0.0, "Seminar Hall Waypoint 2", "Second waypoint near seminar hall", "WAYPOINT"),
+        createCoordinate(606946.12, 2956338.44, 0.0, "Seminar Hall Waypoint 3", "Third waypoint near seminar hall", "WAYPOINT"),
+        createCoordinate(606948.23, 2956337.99, 0.0, "Seminar Hall Waypoint 4", "Fourth waypoint near seminar hall", "WAYPOINT"),
+        createCoordinate(606949.85, 2956336.74, 0.0, "Seminar Hall Waypoint 5", "Fifth waypoint near seminar hall", "WAYPOINT")
+    ];
+
     try {
         const response = await fetch(`${backendUrl}/api/coordinates`); // Fetching coordinates from the backend
         const data = await response.json();
@@ -255,8 +263,6 @@ locationSelect.addEventListener('change', async (event) => {
     }
 });
 
-
-
 // Navigation control functions
 function startNavigation() {
     if (!selectedLocation) {
@@ -295,18 +301,12 @@ function stopNavigation() {
 function getAllPathPoints() {
     // Return all points in order from start to destination
     return [
-        { x: 0.18844, y: -1.081, z: -1.4116, markerType: 'START', locationName: 'Admin Entrance' },
-        { x: 0.64347, y: -2.1809, z: -1.4116, markerType: 'WAYPOINT', locationName: 'Waypoint 1' },
-        { x: 1.0844, y: -3.5544, z: -1.4116, markerType: 'WAYPOINT', locationName: 'Waypoint 2' },
-        { x: 1.4741, y: -4.7743, z: -1.4116, markerType: 'WAYPOINT', locationName: 'Waypoint 3' },
-        { x: 1.9628, y: -6.6293, z: -1.4116, markerType: 'WAYPOINT', locationName: 'Waypoint 4' },
-        { x: 2.4148, y: -8.0416, z: -1.4116, markerType: 'WAYPOINT', locationName: 'Waypoint 5' },
-        { x: 2.8363, y: -10.118, z: -1.4116, markerType: 'WAYPOINT', locationName: 'Waypoint 6' },
-        { x: 3.2908, y: -11.886, z: -1.4116, markerType: 'WAYPOINT', locationName: 'Waypoint 7' },
-        { x: 3.6405, y: -13.038, z: -1.4116, markerType: 'WAYPOINT', locationName: 'Waypoint 8' },
-        { x: 3.9757, y: -14.164, z: -1.4116, markerType: 'WAYPOINT', locationName: 'Waypoint 9' },
-        { x: 4.3366, y: -15.421, z: -1.4116, markerType: 'WAYPOINT', locationName: 'Waypoint 10' },
-        { x: 4.8435, y: -16.692, z: -1.4116, markerType: 'DESTINATION', locationName: 'Destination' }
+        { x: 606937.50, y: 94.0, z: 2956334.49, markerType: 'ENTRANCE', locationName: 'Seminar Hall Entrance' },
+        { x: 606943.03, y: 0.0, z: 2956338.86, markerType: 'WAYPOINT', locationName: 'Seminar Hall Waypoint 1' },
+        { x: 606945.92, y: 0.0, z: 2956338.55, markerType: 'WAYPOINT', locationName: 'Seminar Hall Waypoint 2' },
+        { x: 606946.12, y: 0.0, z: 2956338.44, markerType: 'WAYPOINT', locationName: 'Seminar Hall Waypoint 3' },
+        { x: 606948.23, y: 0.0, z: 2956337.99, markerType: 'WAYPOINT', locationName: 'Seminar Hall Waypoint 4' },
+        { x: 606949.85, y: 0.0, z: 2956336.74, markerType: 'WAYPOINT', locationName: 'Seminar Hall Waypoint 5' }
     ];
 }
 
