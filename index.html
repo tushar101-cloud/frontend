@@ -50,17 +50,7 @@
                     </a-box>
                 </a-marker>
 
-                <!-- Environment -->
-                <a-entity id="environment" position="0 0 0">
-                    <!-- Ground marker for better tracking -->
-                    <a-plane rotation="-90 0 0" 
-                             width="20" 
-                             height="20" 
-                             material="opacity: 0.5; transparent: true"
-                             class="clickable">
-                    </a-plane>
-                </a-entity>
-
+               
                 <!-- Navigation Helper Elements -->
                 <a-entity id="navigation-helpers">
                     <!-- Distance markers will be added dynamically -->
@@ -127,8 +117,9 @@
             });
         }
 
-        // Call startScanning when the QR code scanner is ready
-        startScanning();
+        // Set up event listener for the scan QR button
+        document.getElementById('scan-qr-btn').addEventListener('click', startScanning);
+
 
 
         // Fetch coordinates from the backend
