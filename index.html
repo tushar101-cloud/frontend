@@ -97,6 +97,8 @@
                 },
                 (decodedText, decodedResult) => {
                     console.log("QR code scanned:", decodedText);
+                    alert("QR code scanning successful!");
+
                     try {
                         const coordinates = JSON.parse(decodedText);
                         // Start navigation using the coordinates
@@ -114,6 +116,8 @@
                 (errorMessage) => {
                     // Handle scanning errors
                     console.error("Scanning error:", errorMessage);
+                    alert("QR code scanning failed. Please try again.");
+
                 }
             ).catch(err => {
                 console.error("Unable to start scanning:", err);
