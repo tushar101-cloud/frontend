@@ -229,10 +229,20 @@ function calculatePath(start, end) {
     return [start, end];
 }
 
+function handleScannedCoordinates(coordinates) {
+    console.log("Handling scanned coordinates:", coordinates);
+    // Update the current position and navigation path based on scanned coordinates
+    currentPosition = { x: coordinates.x, y: coordinates.y, z: coordinates.z };
+    selectedLocation = coordinates.locationName; // Assuming the QR code contains a location name
+    navigationPath = [currentPosition]; // Set the navigation path to the scanned coordinates
+    createNavigationPath(); // Update the navigation path display
+}
+
 // Event Listeners
 startBtn.addEventListener('click', startNavigation);
 stopBtn.addEventListener('click', stopNavigation);
 locationSelect.addEventListener('change', async (event) => {
+
     const selectedLocation = event.target.value;
     try {
         const response = await fetch(`${backendUrl}/coordinates?location=${encodeURIComponent(selectedLocation)}`);
